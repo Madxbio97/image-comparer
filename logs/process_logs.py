@@ -1,6 +1,5 @@
 from logging import getLogger, StreamHandler, Formatter, FileHandler, INFO
 
-# Настройки логгирования
 logger = getLogger(__name__)
 logger.setLevel(INFO)
 stream_handler = StreamHandler()

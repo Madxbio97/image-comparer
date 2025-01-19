@@ -2,7 +2,7 @@ import os
 import cv2
 import numpy as np
 
-from CONSTANTS import LR_DIR, HR_DIR
+from constants.DIR import LR_DIR, HR_DIR
 
 
 def mse(image_a, image_b):

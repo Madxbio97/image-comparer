@@ -24,8 +24,7 @@ Correlation coefficient вычисляет коэффициент Пирсона
 
 
 def mse(image1, image2):
-    err = np.sum((image1.astype(float) - image2.astype(float)) ** 2)
-    err /= float(image1.shape[0] * image1.shape[1])
+    err = np.mean((image1 - image2) ** 2)
     return err
 
 
@@ -37,13 +36,13 @@ def psnr(mse_val):
 
 
 def pixel_similarity(image1, image2):
-    same_pixels = np.count_nonzero(np.all(image1 == image2, axis=2))
+    same_pixels = np.sum(np.all(image1 == image2, axis=2))
     total_pixels = image1.shape[0] * image1.shape[1]
     return same_pixels / total_pixels
 
 
-def correlation_coefficient(image1, image2):
-    flattened1 = image1.flatten().astype(float)
-    flattened2 = image2.flatten().astype(float)
+def correlation_coefficient_optimized(image1, image2):
+    flattened1 = image1.ravel()
+    flattened2 = image2.ravel()
     corr_coef, _ = pearsonr(flattened1, flattened2)
     return corr_coef

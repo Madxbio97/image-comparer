@@ -45,6 +45,9 @@ def correlation_coefficient_optimized(image1, image2):
     try:
         corr_coef, _ = pearsonr(flattened1, flattened2)
     except ValueError:
-        corr_coef = 1.0 if np.std(flattened1) == 0 and np.std(flattened2) == 0 else 0.0
+        if np.std(flattened1) == 0 and np.std(flattened2) == 0:
+            corr_coef = 1.0 if np.all(flattened1 == flattened2) else 0.0
+        else:
+            corr_coef = 0.0
 
     return corr_coef

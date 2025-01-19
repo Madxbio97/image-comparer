@@ -1,6 +1,6 @@
 base_treshold = {
-    'MSE': (0.471185, 12608.581732),
-    'PSNR': (7.124141, 51.398890),
-    'Pixel Similarity': (0.603876, 0.986398),
-    'Correlation Coefficient': (-1, 0.994200)
+    'MSE': (0, 10000),
+    'PSNR': (0, 10000),
+    'Pixel Similarity': (0.048194, 0.994690),
+    'Correlation Coefficient': (0, 1)
 }

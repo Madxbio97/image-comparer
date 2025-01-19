@@ -18,7 +18,7 @@ class Logger:
         })
 
     def save_log(self):
-        with open('../log.txt', 'w') as file:
+        with open('log.txt', 'w') as file:
             file.write("Matches:\n")
             for match in self.matches:
                 file.write(f"LR: {match['LR']} | HR: {match['HR']} | Metrics: {match['metrics']}\n")

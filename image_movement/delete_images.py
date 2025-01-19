@@ -14,7 +14,7 @@ def delete_images(lr_file, hr_file):
     except OSError as e:
         if e.errno == errno.ENOENT:
             logger.warning(
-                f"Файл {hr_file} уже удалён из директории HR_DIR, поэтому удаление файла из LR_DIR продолжается.")
-            logger.info(f"Удалены изображения: {lr_file}, {hr_file}")
+                f"The {hr_file} file has already been deleted from the HR_DIR directory, so the file deletion from LR_DIR continues.")
+            logger.info(f"Deleted images: {lr_file}, {hr_file}")
         else:
-            logger.error(f"Ошибка при удалении изображения {lr_file}: {e}")
+            logger.error(f"Error when deleting an image {lr_file}: {e}")

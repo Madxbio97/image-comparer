@@ -1,26 +1,25 @@
 import os
-from process_logs.logger import Logger
-from constants.DIR import lr_dir, hr_dir, match_dir
-from modules.compare_images import compare_images
-from modules.check_thresholds import check_thresholds
-from modules.move_images import move_image
-from modules.delete_images import delete_images
+import tqdm
+from logger import Logger
+from DIRS import lr_dir, hr_dir, match_dir
+from utils import check_thresholds, move_image
+from metrics import compare_images
 
 if __name__ == "__main__":
     logger = Logger()
 
-    for lr_img in os.listdir(lr_dir):
+    for lr_img in tqdm.tqdm(os.listdir(lr_dir)):
         lr_path = os.path.join(lr_dir, lr_img)
 
-        for hr_img in os.listdir(hr_dir):
+        for hr_img in tqdm.tqdm(os.listdir(hr_dir)):
             hr_path = os.path.join(hr_dir, hr_img)
 
-            metrics = compare_images
-            if check_thresholds:
+            metrics = compare_images(lr_path, hr_path)
+            if check_thresholds(metrics):
                 new_hr_name = f"{hr_img[:-4]}_{lr_img}"
                 move_image(hr_path, match_dir, new_hr_name)
 
-                delete_images(lr_path)
+                os.remove(lr_path)
 
                 logger.log_match(lr_img, hr_img, metrics)
                 break

@@ -28,11 +28,9 @@ def correlation_coefficient_optimized(image_a, image_b):
 def compare_images(image_a, image_b):
     metrics = {}
 
-    # Преобразуем изображения к одному типу данных
     image_a = cv2.cvtColor(cv2.imread(image_a), cv2.COLOR_BGR2GRAY)
     image_b = cv2.cvtColor(cv2.imread(image_b), cv2.COLOR_BGR2GRAY)
 
-    # Вычисляем метрики
     metrics['MSE'] = mse(image_a, image_b)
     metrics['PSNR'] = psnr(metrics['MSE'])
     metrics['SSIM'] = ssim(image_a, image_b)

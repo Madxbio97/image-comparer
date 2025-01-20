@@ -7,8 +7,8 @@ def check_thresholds(metrics):
         if metric == 'PSNR' and metrics[metric] == float('inf'):
             continue
 
-        min_val = THRESHOLDS[metric]['min']
-        max_val = THRESHOLDS[metric]['max']
+        min_val = THRESHOLDS[metric].get('min', float('-inf'))
+        max_val = THRESHOLDS[metric].get('max', float('inf'))
         if not (min_val <= metrics[metric] <= max_val):
             return False
     return True

@@ -2,6 +2,7 @@ import cv2
 from skimage.metrics import structural_similarity as ssim
 from scipy.stats import pearsonr
 import numpy as np
+import warnings
 
 
 def mse(image_a, image_b):
@@ -22,7 +23,13 @@ def pixel_similarity(image_a, image_b):
 
 
 def correlation_coefficient_optimized(image_a, image_b):
-    return pearsonr(image_a.flatten(), image_b.flatten())[0]
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore")
+        corr_coef = pearsonr(image_a.flatten(), image_b.flatten())
+        if np.isnan(corr_coef[0]):
+            return 0.0
+        else:
+            return corr_coef[0]
 
 
 def compare_images(image_a, image_b):
